@@ -1,3 +1,22 @@
+const numberButtons = document.querySelectorAll('[data-number]');
+const operatorButtons = document.querySelectorAll('[data-operator]');
+const inputScreen = document.querySelector('.input-screen');
+const resultScreen = document.querySelector('.result-screen');
+const clearBtn = document.getElementById('clearBtn');
+const delBtn = document.getElementById('deleteBtn');
+const pointBtn = document.getElementById('pointBtn');
+const equalsBtn = document.getElementById('equalsBtn');
+
+// mutable variables responsible for the calculator screen display
+let firstNum = '';
+let secondNum = '';
+let currentOperator = null;
+let resetScreen = false;
+
+
+
+
+// calculator functions
 const add = (numOne, numTwo) => numOne + numTwo;
   
 const subtract = (numOne, numTwo) => numOne - numTwo;
@@ -18,16 +37,14 @@ const operate = (operator, numOne, numTwo) => {
         case '-':
             return subtract(numOne, numTwo);
             break;
-        case '*':
+        case '×':
             return multiply(numOne, numTwo);
             break;
-        case '/':
+        case '÷':
+            if (numTwo === 0) return null;
             return divide(numOne, numTwo);
             break;
-        case '^':
-            return power(numOne, numTwo);
-            break;
         default:
-            console.log("Invalid operator.");
+            return null;
     }
 }

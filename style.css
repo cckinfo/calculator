@@ -11,7 +11,6 @@
     padding: 0;
     font-family: 'Roboto', sans-serif;
     background-color: var(--light);
-    border: 1px solid;
 }
 
 .main {
@@ -32,33 +31,33 @@
 
 .screen {
     background: inherit;
+    border-top-right-radius: inherit;
+    border-top-left-radius: inherit;
     text-align: right;
-    border-radius: inherit;
-    padding: 10px 20px;
-    border-radius: inherit;
+    padding: 1rem;
 }
 
 .calc-screen {
-    border-radius: inherit;
+    border-radius: 1rem;
     width: 100%;
-}
-
-.result-screen {
-    margin-top: 20px;
+    border-radius: 2rem;
+    overflow: hidden
 }
 
 .result-screen,
 .input-screen {
+    min-height: 32px;
+    border: none;
     background-color: var(--secondary-dark);
-    padding: 5px;
+    padding: 4px 25px 4px 0;
 }
 
-.result-screen {
+.input-screen {
     font-size: 25px;
     color: var(--secondary-light);
 }
 
-.input-screen {
+.result-screen {
     font-size: 30px;
     color: var(--primary-light);
 }
@@ -70,7 +69,8 @@
     height: 100%;
     gap: 20px;
     padding: 2rem;
-    border-radius: inherit;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
 }
 
 button {
@@ -81,4 +81,9 @@ button {
     border: 0px solid transparent;
     border-radius: 50%;
     padding: 20px;
+}
+
+#equalsBtn {
+    grid-column: 3 / 5;
+    border-radius: 2.5rem;
 }
