@@ -44,20 +44,20 @@
     overflow: hidden
 }
 
-.result-screen,
-.input-screen {
+.current-screen,
+.previous-screen {
     min-height: 32px;
     border: none;
     background-color: var(--secondary-dark);
     padding: 4px 25px 4px 0;
 }
 
-.input-screen {
+.previous-screen {
     font-size: 25px;
     color: var(--secondary-light);
 }
 
-.result-screen {
+.current-screen {
     font-size: 30px;
     color: var(--primary-light);
 }

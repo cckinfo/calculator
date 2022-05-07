@@ -1,7 +1,8 @@
+// all the relevant DOM elements put into variables
 const numberButtons = document.querySelectorAll('[data-number]');
 const operatorButtons = document.querySelectorAll('[data-operator]');
-const inputScreen = document.querySelector('.input-screen');
-const resultScreen = document.querySelector('.result-screen');
+const previousScreen = document.querySelector('.previous-screen');
+const currentScreen = document.querySelector('.current-screen');
 const clearBtn = document.getElementById('clearBtn');
 const delBtn = document.getElementById('deleteBtn');
 const pointBtn = document.getElementById('pointBtn');
@@ -11,12 +12,43 @@ const equalsBtn = document.getElementById('equalsBtn');
 let firstNum = '';
 let secondNum = '';
 let currentOperator = null;
-let resetScreen = false;
+let restartScreen = false;
+
+// calculator logic
+const appendNum = (num) => {
+    if (currentScreen.textContent === '0' || restartScreen) resetScreen();
+    currentScreen.textContent += num;
+};
+
+const setOperator = (operator) => {
+    if (currentOperator !== null) evaluate();
+    currentOperator = operator;
+    firstNum = currentScreen.textContent;
+    previousScreen = `${firstNum} ${currentOperator}`;
+    restartScreen = true;
+}
+
+const evaluate = () => {
+    if (currentOperator === null || restartScreen) return;
+    if (currentOperator === '÷' && currentScreen.textContent === '0') {
+        alert("You're trying to divide by zero...");
+        return;
+    }
+    secondNum = currentScreen.textContent;
+    currentScreen.textContent = round(operate(currentOperator, firstNum, secondNum));
+    previousScreen.textContent = `${firstNum} ${currentOperator} ${secondNum} =`;
+    currentOperator = null;
+}
+
+const resetScreen = () => {
+    currentScreen.textContent = '';
+    restartScreen = false
+}
+
+const round = (num) => Math.round(100 * num) / 100;
 
 
-
-
-// calculator functions
+// calculator math functions
 const add = (numOne, numTwo) => numOne + numTwo;
   
 const subtract = (numOne, numTwo) => numOne - numTwo;
@@ -48,3 +80,6 @@ const operate = (operator, numOne, numTwo) => {
             return null;
     }
 }
+
+numberButtons.forEach((button) => 
+    button.addEventListener('click', () => appendNum(button.textContent)));
